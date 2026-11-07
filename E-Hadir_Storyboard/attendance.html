@@ -1,0 +1,314 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>E-Hadir UiTM - Attendance Management</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="dashboard-page">
+
+    <!-- HEADER -->
+    <header class="dashboard-header">
+
+        <h1>E-HADIR UiTM</h1>
+
+        <p>Committee - Attendance Management</p>
+
+        <a href="committee-dashboard.html">
+            Back to Committee Dashboard
+        </a>
+
+    </header>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="dashboard-container">
+
+        <h2>Manage Attendance</h2>
+
+        <p>
+            Record student attendance for university events.
+        </p>
+
+
+        <!-- EVENT INFORMATION -->
+        <section class="committee-section">
+
+            <div class="event-card">
+
+                <h3>Cybersecurity Awareness Seminar</h3>
+
+                <p><strong>Date:</strong> 25 October 2026</p>
+
+                <p><strong>Time:</strong> 10:00 AM</p>
+
+                <p><strong>Venue:</strong> Dewan Kuliah A</p>
+
+                <p><strong>Status:</strong> Completed</p>
+
+            </div>
+
+        </section>
+
+
+        <!-- STUDENT ATTENDANCE -->
+        <section class="committee-section">
+
+            <div class="event-card">
+
+                <h3>Student Attendance List</h3>
+
+                <div class="table-scroll">
+
+                    <table class="committee-table">
+
+                        <thead>
+                            <tr>
+                                <th>Registration ID</th>
+                                <th>Student Name</th>
+                                <th>Ticket Code</th>
+                                <th>Attendance Status</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <!-- STUDENT 1 -->
+                            <tr>
+                                <td>1</td>
+                                <td>Ali Hakim</td>
+                                <td>EHD-2026-001</td>
+
+                                <td>
+                                    <select id="attendance1"
+                                            class="attendance-select"
+                                            aria-label="Attendance for Ali Hakim">
+
+                                        <option value="PENDING">
+                                            Not Marked
+                                        </option>
+
+                                        <option value="PRESENT">
+                                            Present
+                                        </option>
+
+                                        <option value="ABSENT">
+                                            Absent
+                                        </option>
+
+                                    </select>
+                                </td>
+                            </tr>
+
+
+                            <!-- STUDENT 2 -->
+                            <tr>
+                                <td>2</td>
+                                <td>Siti Nadia</td>
+                                <td>EHD-2026-002</td>
+
+                                <td>
+                                    <select id="attendance2"
+                                            class="attendance-select"
+                                            aria-label="Attendance for Siti Nadia">
+
+                                        <option value="PENDING">
+                                            Not Marked
+                                        </option>
+
+                                        <option value="PRESENT">
+                                            Present
+                                        </option>
+
+                                        <option value="ABSENT">
+                                            Absent
+                                        </option>
+
+                                    </select>
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                <!-- SAVE BUTTON -->
+                
+                <button type="button"
+                        id="saveAttendance"
+                        class="attendance-button">
+                    Save Attendance
+                </button>
+
+
+                
+                    <!-- SAVE RESULT MESSAGE -->
+                    <p id="attendanceMessage"
+                       class="attendance-message"
+                       role="status"
+                       aria-live="polite">
+                    </p>
+
+                    <!-- ATTENDANCE SUMMARY -->
+                    <div class="attendance-summary">
+
+                        <h3>Saved Attendance Summary (Demo)</h3>
+
+                        <p>
+                            Total Present:
+                            <strong id="totalPresent">0</strong>
+                        </p>
+
+                        <p>
+                            Total Absent:
+                            <strong id="totalAbsent">0</strong>
+                        </p>
+
+                    </div>
+
+                    <p class="attendance-note">
+                        Demo only. Attendance is not saved
+                        to Apache Derby database.
+                    </p>
+
+
+            </div>
+
+        </section>
+
+    </main>
+
+    
+<script>
+
+// Storage key for this event
+const STORAGE_KEY = "ehadir_attendance_event1";
+
+// Get HTML elements
+const attendance1 =
+    document.getElementById("attendance1");
+
+const attendance2 =
+    document.getElementById("attendance2");
+
+const message =
+    document.getElementById("attendanceMessage");
+
+
+// FUNCTION 1: Save attendance
+function saveAttendance() {
+
+    // Read selected attendance status
+    const status1 = attendance1.value;
+    const status2 = attendance2.value;
+
+    // Check whether both students are marked
+    if (status1 === "PENDING" ||
+        status2 === "PENDING") {
+
+        message.textContent =
+            "Please mark both students before saving.";
+
+        message.className =
+            "attendance-message error";
+
+        return;
+    }
+
+    // Create attendance object
+    const attendanceData = {
+        "1": status1,
+        "2": status2
+    };
+
+    // Save data temporarily in browser
+    sessionStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(attendanceData)
+    );
+
+    // Display success message
+    message.textContent =
+        "Demo attendance saved successfully. " +
+        "No data was saved to Apache Derby.";
+
+    message.className =
+        "attendance-message success";
+
+    // Update attendance summary
+    updateSummary(attendanceData);
+}
+
+
+// FUNCTION 2: Calculate attendance summary
+function updateSummary(data) {
+
+    const statuses = Object.values(data);
+
+    const totalPresent =
+        statuses.filter(
+            status => status === "PRESENT"
+        ).length;
+
+    const totalAbsent =
+        statuses.filter(
+            status => status === "ABSENT"
+        ).length;
+
+    document.getElementById(
+        "totalPresent"
+    ).textContent = totalPresent;
+
+    document.getElementById(
+        "totalAbsent"
+    ).textContent = totalAbsent;
+
+}
+
+
+// FUNCTION 3: Restore saved demo attendance
+function loadAttendance() {
+
+    const savedData =
+        sessionStorage.getItem(STORAGE_KEY);
+
+    if (savedData) {
+
+        const data = JSON.parse(savedData);
+
+        // Restore previous selections
+        attendance1.value = data["1"];
+        attendance2.value = data["2"];
+
+        // Restore summary
+        updateSummary(data);
+
+    }
+
+}
+
+
+// Connect button to Save function
+document.getElementById(
+    "saveAttendance"
+).addEventListener("click", saveAttendance);
+
+
+// Load previously saved attendance
+loadAttendance();
+
+</script>
+
+    
+</body>
+</html>

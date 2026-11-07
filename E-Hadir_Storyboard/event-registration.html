@@ -1,0 +1,158 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>E-Hadir UiTM - Event Registration</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="dashboard-page">
+
+    <!-- HEADER -->
+    <header class="dashboard-header">
+
+        <h1>E-HADIR UiTM</h1>
+
+        <p>Student Event & Workshop Ticketing</p>
+
+        <a href="events.html">
+            Back to Events
+        </a>
+
+    </header>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="dashboard-container">
+
+        <h2>Event Registration</h2>
+
+        <p>
+            Review the event information before
+            confirming your registration.
+        </p>
+
+
+        <!-- EVENT INFORMATION -->
+        <section class="event-section">
+
+            <div class="event-card">
+
+                <h3>AI & Data Analytics Workshop</h3>
+
+                <p><strong>Category:</strong> Workshop</p>
+
+                <p><strong>Date:</strong> 21 November 2026</p>
+
+                <p><strong>Time:</strong> 9:00 AM</p>
+
+                <p><strong>Venue:</strong> Computer Lab 2</p>
+
+                <p><strong>Capacity:</strong> 40 Students</p>
+
+                <p><strong>Status:</strong> Upcoming</p>
+
+                <hr>
+
+
+                <!-- STUDENT INFORMATION -->
+                <h3>Student Information</h3>
+
+                <p><strong>Name:</strong> Ali Hakim</p>
+
+                <p>Demo Student Account</p>
+
+
+                <!-- REGISTRATION FORM -->
+                <form id="eventRegistrationForm"
+                      onsubmit="confirmEventRegistration(event)">
+
+                    <div class="registration-confirm">
+
+                        <input type="checkbox"
+                               id="confirmEvent"
+                               name="confirmEvent">
+
+                        <label for="confirmEvent">
+                            I confirm that I want to
+                            register for this event.
+                        </label>
+
+                    </div>
+
+                    <button type="submit"
+                            class="event-register-button">
+                        Confirm Registration
+                    </button>
+
+                </form>
+
+                <!-- VALIDATION MESSAGE -->
+                <p id="registrationMessage"
+                   class="registration-message"
+                   role="status"
+                   aria-live="polite"></p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- JAVASCRIPT -->
+    <script>
+
+        
+function confirmEventRegistration(event) {
+
+    // Step 1: Prevent normal form submission
+    event.preventDefault();
+
+    // Step 2: Check the confirmation checkbox
+    const confirmed =
+        document.getElementById("confirmEvent").checked;
+
+    const message =
+        document.getElementById("registrationMessage");
+
+    // Step 3: Validation
+    if (!confirmed) {
+
+        message.textContent =
+            "Please confirm your event registration.";
+
+        message.className =
+            "registration-message error";
+
+        return;
+    }
+
+    // Step 4: Store demo confirmation in browser
+    sessionStorage.setItem(
+        "ehadir_demo_ticket",
+        "confirmed"
+    );
+
+    // Step 5: Show demo notification
+    alert(
+        "Demo registration confirmed!\n" +
+        "No data has been saved to the database."
+    );
+
+    // Step 6: Open Digital Ticket Page
+    window.location.href = "digital-ticket.html";
+
+}
+
+
+    </script>
+
+</body>
+</html>

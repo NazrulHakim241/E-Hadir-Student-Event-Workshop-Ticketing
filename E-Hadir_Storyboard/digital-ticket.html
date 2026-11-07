@@ -1,0 +1,153 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>E-Hadir UiTM - Digital Ticket</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="dashboard-page">
+
+    <!-- HEADER -->
+    <header class="dashboard-header">
+
+        <h1>E-HADIR UiTM</h1>
+
+        <p>Student Event & Workshop Ticketing</p>
+
+        <a href="event-registration.html">
+            Back to Registration
+        </a>
+
+    </header>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="dashboard-container">
+
+        <h2>My Digital Ticket</h2>
+
+        <p>View your event ticket information below.</p>
+
+
+        
+<!-- MESSAGE BEFORE CONFIRMATION -->
+<p id="ticketNotice">
+    Please confirm your event registration first.
+    <a href="event-registration.html">
+        Go to Event Registration
+    </a>
+</p>
+
+<!-- DIGITAL TICKET -->
+<article class="ticket-card"
+         id="demoTicket"
+         hidden>
+
+
+            <!-- TICKET HEADER -->
+            <div class="ticket-header">
+
+                <h2>E-HADIR</h2>
+
+                <p>STUDENT EVENT TICKET</p>
+
+            </div>
+
+
+            <!-- TICKET INFORMATION -->
+            <div class="ticket-content">
+
+                <h3>AI & Data Analytics Workshop</h3>
+
+                <hr>
+
+                <p>
+                    <strong>Student Name:</strong>
+                    Ali Hakim
+                </p>
+
+                <p>
+                    <strong>Category:</strong>
+                    Workshop
+                </p>
+
+                <p>
+                    <strong>Date:</strong>
+                    21 November 2026
+                </p>
+
+                <p>
+                    <strong>Time:</strong>
+                    9:00 AM
+                </p>
+
+                <p>
+                    <strong>Venue:</strong>
+                    Computer Lab 2
+                </p>
+
+                <p>
+                    <strong>Ticket Status:</strong>
+                    Demo Only
+                </p>
+
+                <hr>
+
+
+                <!-- TICKET CODE -->
+                <div class="ticket-code">
+
+                    <p>TICKET CODE</p>
+
+                    <h2>DEMO-AI-001</h2>
+
+                </div>
+
+
+                <!-- DEMO NOTICE -->
+                <p class="ticket-warning">
+                    STORYBOARD DEMO -
+                    NOT A VALID ENTRY TICKET
+                </p>
+
+            </div>
+
+        </article>
+
+    </main>
+
+    
+<script>
+
+    // Step 1: Check demo registration status
+    const ticketStatus =
+        sessionStorage.getItem("ehadir_demo_ticket");
+
+    // Step 2: Get ticket elements
+    const ticket =
+        document.getElementById("demoTicket");
+
+    const notice =
+        document.getElementById("ticketNotice");
+
+    // Step 3: Show ticket after confirmation
+    if (ticketStatus === "confirmed") {
+
+        ticket.hidden = false;
+
+        notice.hidden = true;
+
+    }
+
+</script>
+
+    
+</body>
+</html>

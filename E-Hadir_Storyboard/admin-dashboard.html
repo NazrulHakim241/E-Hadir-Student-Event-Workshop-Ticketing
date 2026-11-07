@@ -1,0 +1,134 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>E-Hadir UiTM - Admin Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="dashboard-page">
+
+    <header class="dashboard-header">
+
+        <h1>E-HADIR UiTM</h1>
+
+        <p>Administrator Dashboard</p>
+
+        <a href="index.html">Back to Login</a>
+
+    </header>
+
+    <main class="dashboard-container">
+
+        <h2>Welcome, System Admin!</h2>
+
+        <p>
+            Manage cancelled events in E-Hadir.
+        </p>
+
+        <section class="committee-section">
+
+            <div class="event-card">
+
+                <h3>Cancelled Events</h3>
+
+                <table class="committee-table">
+
+                    <thead>
+                        <tr>
+                                <th>Event Name</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    
+                                <tbody>
+                                    <tr id="cancelledEventRow">
+                                        
+                                        
+                                        <!-- EMPTY STATE MESSAGE -->
+                                        <tr id="emptyCancelledRow" hidden>
+
+                                            <td colspan="4"
+                                                style="text-align: center; padding: 20px;">
+
+                                                No cancelled events available.
+
+                                            </td>
+
+                                        </tr>
+
+
+                                        <td>Digital Entrepreneurship Talk</td>
+
+                                        <td>30 Nov 2026</td>
+
+                                        <td>Cancelled</td>
+
+                                        <td>
+                                            <button type="button"
+                                                    class="delete-button"
+                                                    onclick="deleteCancelledEvent()">
+                                                Delete
+                                            </button>
+                                        </td>
+
+                                    </tr>
+                                </tbody>
+
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</body>
+
+
+<script>
+
+function deleteCancelledEvent() {
+
+    // Ask admin for confirmation
+    const confirmed = confirm(
+        "Are you sure you want to delete " +
+        "Digital Entrepreneurship Talk?"
+    );
+
+    // Stop if admin selects Cancel
+    if (!confirmed) {
+        return;
+    }
+
+    // Find the cancelled event row
+    const eventRow =
+        document.getElementById("cancelledEventRow");
+
+    // Remove the row from the HTML table
+    if (eventRow) {
+        eventRow.remove();
+    }
+
+    // Display a demo notification
+    alert(
+        "Event removed from the page (Demo only).\n" +
+        "No data was deleted from Apache Derby."
+    );
+
+}
+
+</script>
+
+
+</html>

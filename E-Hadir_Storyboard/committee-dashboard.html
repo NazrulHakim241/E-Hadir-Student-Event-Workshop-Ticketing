@@ -1,0 +1,252 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>E-Hadir UiTM - Committee Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="dashboard-page">
+
+    <!-- HEADER -->
+    <header class="dashboard-header">
+
+        <h1>E-HADIR UiTM</h1>
+
+        <p>Committee Dashboard</p>
+
+        <a href="index.html">
+            Back to Login
+        </a>
+
+    </header>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="dashboard-container">
+
+        <h2>Welcome, Nur Aina!</h2>
+
+        <p>
+            Manage your university events and
+            student registrations.
+        </p>
+
+
+        <!-- DASHBOARD STATISTICS -->
+        <section class="dashboard-stats">
+
+            <div class="stat-card">
+                <h3>Total Events</h3>
+                <p class="stat-number">2</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>Upcoming Events</h3>
+                <p class="stat-number">1</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>Total Registrations</h3>
+                <p class="stat-number">2</p>
+            </div>
+
+        </section>
+
+
+        <!-- COMMITTEE NAVIGATION -->
+        <section class="committee-section">
+
+            <h2>Committee Menu</h2>
+
+            
+                        
+                        <nav class="committee-menu">
+
+                            <!-- MENU 1: EVENT OVERVIEW -->
+                            <a href="#eventOverview"
+                               class="committee-link">
+                                Event Overview
+                            </a>
+
+                            <!-- MENU 2: VIEW REGISTRATIONS -->
+                            <a href="#registrationOverview"
+                               class="committee-link">
+                                View Registrations
+                            </a>
+
+                            <!-- MENU 3: MANAGE EVENTS -->
+                            <a href="manage-events.html"
+                               class="committee-link">
+                                Manage Events
+                            </a>
+
+                            <!-- MENU 4: MANAGE ATTENDANCE -->
+                            <a href="attendance.html"
+                               class="committee-link">
+                                Manage Attendance
+                            </a>
+
+                        </nav>
+
+
+
+        </section>
+
+
+        <!-- EVENT OVERVIEW -->
+        <section class="committee-section"
+                 id="eventOverview">
+
+            <h2>Event Overview</h2>
+
+            
+                        <!-- AI WORKSHOP EVENT CARD -->
+
+                        <div class="event-card">
+
+                            <h3 id="dashboardWorkshopName">
+                                AI & Data Analytics Workshop
+                            </h3>
+
+                            <p id="dashboardWorkshopDate">
+                                Date: 21 November 2026
+                            </p>
+
+                            <p id="dashboardWorkshopVenue">
+                                Venue: Computer Lab 2
+                            </p>
+
+                            <p id="dashboardWorkshopCapacity">
+                                Capacity: 40 Students
+                            </p>
+
+                            <p>Status: Upcoming</p>
+
+                        </div>
+
+
+            <div class="event-card">
+
+                <h3>Cybersecurity Awareness Seminar</h3>
+
+                <p>Date: 25 October 2026</p>
+
+                <p>Venue: Dewan Kuliah A</p>
+
+                <p>Status: Completed</p>
+
+            </div>
+
+        </section>
+
+
+        <!-- REGISTRATION OVERVIEW -->
+        <section class="committee-section"
+                 id="registrationOverview">
+
+            <h2>Recent Registrations</h2>
+
+            <div class="event-card">
+
+                <table class="committee-table">
+
+                    <thead>
+                        <tr>
+                            <th>Student Name</th>
+                            <th>Event</th>
+                            <th>Ticket Code</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>Ali Hakim</td>
+                            <td>Cybersecurity Seminar</td>
+                            <td>EHD-2026-001</td>
+                        </tr>
+
+                        <tr>
+                            <td>Siti Nadia</td>
+                            <td>Cybersecurity Seminar</td>
+                            <td>EHD-2026-002</td>
+                        </tr>
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    
+<script>
+
+// LESSON 1C(D)
+// Synchronize Committee Dashboard
+
+function loadUpdatedWorkshop() {
+
+    // Read saved event from sessionStorage
+    const savedEvent = sessionStorage.getItem(
+        "ehadir_updated_workshop"
+    );
+
+    // Stop if no updated event exists
+    if (!savedEvent) {
+        return;
+    }
+
+    // Convert JSON text into JavaScript object
+    const updatedEvent = JSON.parse(savedEvent);
+
+    // Format event date
+    const formattedDate = new Date(
+        updatedEvent.date
+    ).toLocaleDateString("en-GB", {
+        day: "numeric",
+        month: "long",
+        year: "numeric"
+    });
+
+    // Update Event Name
+    document.getElementById(
+        "dashboardWorkshopName"
+    ).textContent = updatedEvent.name;
+
+    // Update Event Date
+    document.getElementById(
+        "dashboardWorkshopDate"
+    ).textContent = "Date: " + formattedDate;
+
+    // Update Event Venue
+    document.getElementById(
+        "dashboardWorkshopVenue"
+    ).textContent = "Venue: " + updatedEvent.venue;
+
+    // Update Event Capacity
+    document.getElementById(
+        "dashboardWorkshopCapacity"
+    ).textContent =
+        "Capacity: " + updatedEvent.capacity
+        + " Students";
+
+}
+
+// Execute when page loads
+loadUpdatedWorkshop();
+
+</script>
+
+    
+    
+</body>
+</html>

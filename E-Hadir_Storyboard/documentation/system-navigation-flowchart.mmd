@@ -1,0 +1,102 @@
+
+flowchart TB
+    START([Start]) --> LOGIN["Login Page<br/>index.html"]
+    LOGIN --> REGISTER["Account Registration<br/>register.html"]
+    REGISTER -->|"Back to Login"| LOGIN
+    LOGIN --> ROLE{"Select Demo Role"}
+
+    subgraph STUDENT["STUDENT NAVIGATION"]
+        direction TB
+        SD["Student Dashboard<br/>student-dashboard.html"]
+        EVENTS["Browse Events<br/>events.html"]
+        DETAIL["Seminar Details<br/>event-details.html"]
+        EREG["Workshop Registration<br/>event-registration.html"]
+        CONFIRM{"Registration Confirmed?"}
+        TICKETPAGE["Digital Ticket Page<br/>digital-ticket.html"]
+        TICKETCHECK{"Demo Ticket Confirmed?"}
+        TICKET["Display Digital Ticket"]
+        NOTICE["Registration Required Notice"]
+
+        SD --> EVENTS
+        SD -->|"My Digital Ticket"| TICKETPAGE
+        EVENTS -->|"View Details"| DETAIL
+        DETAIL --> EVENTS
+        EVENTS -->|"Register Now"| EREG
+        EREG --> CONFIRM
+        CONFIRM -->|"No"| EREG
+        CONFIRM -->|"Yes"| TICKETPAGE
+        TICKETPAGE --> TICKETCHECK
+        TICKETCHECK -->|"Yes"| TICKET
+        TICKETCHECK -->|"No"| NOTICE
+        TICKETPAGE -->|"Back"| EREG
+    end
+
+    subgraph COMMITTEE["COMMITTEE NAVIGATION"]
+        direction TB
+        CD["Committee Dashboard<br/>committee-dashboard.html"]
+        OVERVIEW["Event Overview<br/>Same Page"]
+        REGS["Recent Registrations<br/>Same Page"]
+        MANAGE["Manage Events<br/>manage-events.html"]
+        VIEW["View Event Details<br/>Same Page"]
+        CREATE["Create Event<br/>create-event.html"]
+        PREVIEW["Validate and Preview Event"]
+        EDIT["Edit Event<br/>edit-event.html"]
+        UPDATE["Save Demo Update<br/>sessionStorage"]
+        ATT["Attendance Management<br/>attendance.html"]
+        SAVEATT["Validate and Save Attendance<br/>sessionStorage"]
+        SUMMARY["Attendance Summary"]
+
+        CD --> OVERVIEW
+        CD --> REGS
+        CD --> MANAGE
+        CD --> ATT
+        MANAGE --> VIEW
+        MANAGE --> CREATE
+        CREATE --> PREVIEW
+        CREATE -->|"Back"| MANAGE
+        MANAGE --> EDIT
+        EDIT --> UPDATE
+        UPDATE -->|"Return to Manage Events"| MANAGE
+        MANAGE -->|"Back"| CD
+        ATT --> SAVEATT
+        SAVEATT --> SUMMARY
+        ATT -->|"Back"| CD
+    end
+
+    subgraph ADMIN["ADMIN NAVIGATION"]
+        direction TB
+        AD["Admin Dashboard<br/>admin-dashboard.html"]
+        CANCELLED["Cancelled Events List"]
+        DELETE["Click Delete"]
+        ASK{"Confirm Delete?"}
+        REMOVED["Remove Event Row"]
+        EMPTY["Display Empty State"]
+
+        AD --> CANCELLED
+        CANCELLED --> DELETE
+        DELETE --> ASK
+        ASK -->|"Cancel"| CANCELLED
+        ASK -->|"OK"| REMOVED
+        REMOVED --> EMPTY
+    end
+
+    ROLE -->|"Student"| SD
+    ROLE -->|"Committee"| CD
+    ROLE -->|"Admin"| AD
+
+    SD -->|"Back to Login"| LOGIN
+    CD -->|"Back to Login"| LOGIN
+    AD -->|"Back to Login"| LOGIN
+
+    classDef main fill:#101b30,color:#ffffff,stroke:#c99337,stroke-width:2px
+    classDef student fill:#dbeafe,color:#1e3a8a,stroke:#2563eb
+    classDef committee fill:#fef3c7,color:#78350f,stroke:#d97706
+    classDef admin fill:#fee2e2,color:#7f1d1d,stroke:#dc2626
+    classDef decision fill:#ede9fe,color:#4c1d95,stroke:#7c3aed
+
+    class START,LOGIN,ROLE main
+    class SD,EVENTS,DETAIL,EREG,TICKETPAGE,TICKET,NOTICE student
+    class CD,OVERVIEW,REGS,MANAGE,VIEW,CREATE,PREVIEW,EDIT,UPDATE,ATT,SAVEATT,SUMMARY committee
+    class AD,CANCELLED,DELETE,REMOVED,EMPTY admin
+    class CONFIRM,TICKETCHECK,ASK decision
+  

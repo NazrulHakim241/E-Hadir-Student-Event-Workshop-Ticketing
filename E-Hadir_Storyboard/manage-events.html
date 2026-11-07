@@ -1,0 +1,244 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>E-Hadir UiTM - Manage Events</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="dashboard-page">
+
+    <!-- HEADER -->
+    <header class="dashboard-header">
+
+        <h1>E-HADIR UiTM</h1>
+
+        <p>Committee - Event Management</p>
+
+        <a href="committee-dashboard.html">
+            Back to Committee Dashboard
+        </a>
+
+    </header>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="dashboard-container">
+        
+        
+<!-- BACK TO COMMITTEE DASHBOARD -->
+
+            <a href="committee-dashboard.html"
+               class="manage-link">
+                &larr; Back to Committee Dashboard
+            </a>
+
+
+        <h2>Manage Events</h2>
+
+        <p>View and manage university events.</p>
+        
+        
+<a href="create-event.html"
+   class="event-link">
+    + Create New Event
+</a>
+
+
+
+        <!-- EVENT LIST -->
+        <section class="committee-section">
+
+            <div class="event-card">
+
+                <h3>Event List</h3>
+
+                <div class="table-scroll">
+
+                    <table class="committee-table">
+
+                        <thead>
+                            <tr>
+                                <th>Event Name</th>
+                                <th>Category</th>
+                                <th>Date</th>
+                                <th>Capacity</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <!-- EVENT 1 -->
+                            <tr>
+                                <td>Cybersecurity Awareness Seminar</td>
+                                <td>Seminar</td>
+                                <td>25 Oct 2026</td>
+                                <td>100</td>
+                                <td>
+                                    <span class="event-status status-completed">
+                                        Completed
+                                    </span>
+                                </td>
+                                <td>
+                                    <a href="#seminar-details"
+                                       class="manage-link">
+                                        View
+                                    </a>
+                                </td>
+                            </tr>
+
+                            <!-- EVENT 2 -->
+                            <tr id="workshopRow">
+                                <td>AI & Data Analytics Workshop</td>
+                                <td>Workshop</td>
+                                <td>21 Nov 2026</td>
+                                <td>40</td>
+                                <td>
+                                    <span class="event-status status-upcoming">
+                                        Upcoming
+                                    </span>
+                                </td>
+                                <td>
+                                    <a href="#workshop-details"
+                                       class="manage-link">
+                                        View
+                                    </a>
+                                    
+                                    &nbsp; | &nbsp;
+
+                                        <a href="edit-event.html"
+                                       class="manage-link">
+                                        Edit
+                                        </a>
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- EVENT 1 DETAILS -->
+        <section class="committee-section"
+                 id="seminar-details">
+
+            <div class="event-card">
+
+                <h3>Cybersecurity Awareness Seminar</h3>
+
+                <p>Category: Seminar</p>
+                <p>Date: 25 October 2026</p>
+                <p>Venue: Dewan Kuliah A</p>
+                <p>Capacity: 100 Students</p>
+                <p>Status: Completed</p>
+
+            </div>
+
+        </section>
+
+
+        <!-- EVENT 2 DETAILS -->
+        <section class="committee-section"
+                 id="workshop-details">
+
+            <div class="event-card">
+
+                <h3>AI & Data Analytics Workshop</h3>
+
+                <p>Category: Workshop</p>
+                <p>Date: 21 November 2026</p>
+                <p>Venue: Computer Lab 2</p>
+                <p>Capacity: 40 Students</p>
+                <p>Status: Upcoming</p>
+
+            </div>
+
+        </section>
+
+    </main>
+    
+    
+<script>
+
+    // Read updated event demo data
+    const savedEvent =
+        sessionStorage.getItem("ehadir_updated_workshop");
+
+    if (savedEvent) {
+
+        const updatedEvent = JSON.parse(savedEvent);
+
+        // Find AI Workshop row
+        const row =
+            document.getElementById("workshopRow");
+
+        if (row) {
+
+            const formattedDate =
+                new Date(updatedEvent.date)
+                .toLocaleDateString("en-GB", {
+                    day: "2-digit",
+                    month: "short",
+                    year: "numeric"
+                });
+
+            row.cells[0].textContent =
+                updatedEvent.name;
+
+            row.cells[1].textContent =
+                updatedEvent.category;
+
+            row.cells[2].textContent =
+                formattedDate;
+
+            row.cells[3].textContent =
+                updatedEvent.capacity;
+        }
+
+        // Update event details section
+        const details =
+            document.getElementById("workshop-details");
+
+        if (details) {
+
+            details.querySelector("h3").textContent =
+                updatedEvent.name;
+
+            const info =
+                details.querySelectorAll(".event-card p");
+
+            info[0].textContent =
+                "Category: " + updatedEvent.category;
+
+            info[1].textContent =
+                "Date: " + new Date(updatedEvent.date)
+                .toLocaleString("en-GB");
+
+            info[2].textContent =
+                "Venue: " + updatedEvent.venue;
+
+            info[3].textContent =
+                "Capacity: " + updatedEvent.capacity +
+                " Students";
+        }
+    }
+
+</script>
+
+
+</body>
+</html>

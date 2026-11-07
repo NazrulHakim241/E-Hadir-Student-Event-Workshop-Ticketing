@@ -1,0 +1,134 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>E-Hadir UiTM - Registration</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="login-box register-box">
+
+        <!-- E-Hadir Logo -->
+        <img src="images/logo-ehadir.png"
+             alt="E-Hadir UiTM Logo"
+             class="logo">
+
+        <h2>Student Registration</h2>
+
+        <form onsubmit="validateRegistration(event)">
+
+            <!-- Full Name -->
+            <label for="fullName">Full Name:</label>
+            <input type="text"
+                   id="fullName"
+                   name="fullName"
+                   placeholder="Enter your full name"
+                   required>
+
+            <!-- Student ID -->
+            <label for="studentId">Student ID:</label>
+            <input type="text"
+                   id="studentId"
+                   name="studentId"
+                   placeholder="e.g. 20260001"
+                   required>
+
+            <!-- Email -->
+            <label for="email">Email Address:</label>
+            <input type="email"
+                   id="email"
+                   name="email"
+                   placeholder="Enter your email"
+                   required>
+
+            <!-- Password -->
+            <label for="password">Password:</label>
+            <input type="password"
+                   id="password"
+                   name="password"
+                   placeholder="Minimum 8 characters"
+                   minlength="8"
+                   required>
+
+            <!-- Confirm Password -->
+            <label for="confirmPassword">
+                Confirm Password:
+            </label>
+            <input type="password"
+                   id="confirmPassword"
+                   name="confirmPassword"
+                   placeholder="Confirm your password"
+                   minlength="8"
+                   required>
+
+            <!-- Register Button -->
+            <button type="submit">
+                Create Account
+            </button>
+
+        </form>
+
+        <p>
+            Already have an account?
+            <a href="index.html">Login Here</a>
+        </p>
+
+    </div>
+
+    
+<script>
+
+function validateRegistration(event) {
+
+    // Prevent form from submitting
+    event.preventDefault();
+
+    // Get input values
+    const fullName =
+        document.getElementById("fullName").value.trim();
+
+    const studentId =
+        document.getElementById("studentId").value.trim();
+
+    const password =
+        document.getElementById("password").value;
+
+    const confirmPassword =
+        document.getElementById("confirmPassword").value;
+
+    // Check full name
+    if (fullName === "") {
+        alert("Please enter your full name.");
+        return;
+    }
+
+    // Check student ID
+    if (studentId === "") {
+        alert("Please enter your Student ID.");
+        return;
+    }
+
+    // Check password matching
+    if (password !== confirmPassword) {
+        alert("Passwords do not match!");
+        return;
+    }
+
+    // Registration demo success
+    alert("Registration validation successful! (Demo only)");
+
+}
+
+</script>
+
+    
+</body>
+</html>

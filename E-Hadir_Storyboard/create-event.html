@@ -1,0 +1,271 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>E-Hadir UiTM - Create Event</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="dashboard-page">
+
+    <!-- HEADER -->
+    <header class="dashboard-header">
+
+        <h1>E-HADIR UiTM</h1>
+
+        <p>Committee - Create Event</p>
+
+        <a href="manage-events.html">
+            Back to Manage Events
+        </a>
+
+    </header>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="dashboard-container">
+
+        <h2>Create New Event</h2>
+
+        <p>
+            Fill in the event information below.
+        </p>
+
+        <section class="committee-section">
+
+            <div class="event-card">
+
+                <!-- CREATE EVENT FORM -->
+                <form id="createEventForm"
+                      class="create-event-form"
+                      onsubmit="createEvent(event)">
+
+                    <!-- EVENT NAME -->
+                    <label for="eventName">
+                        Event Name:
+                    </label>
+
+                    <input type="text"
+                           id="eventName"
+                           name="eventName"
+                           placeholder="Enter event name"
+                           maxlength="150"
+                           required>
+
+
+                    <!-- CATEGORY -->
+                    <label for="category">
+                        Category:
+                    </label>
+
+                    <select id="category"
+                            name="category"
+                            required>
+
+                        <option value="">
+                            Select Category
+                        </option>
+
+                        <option value="Workshop">
+                            Workshop
+                        </option>
+
+                        <option value="Seminar">
+                            Seminar
+                        </option>
+
+                        <option value="Competition">
+                            Competition
+                        </option>
+
+                    </select>
+
+
+                    <!-- DESCRIPTION -->
+                    <label for="description">
+                        Event Description:
+                    </label>
+
+                    <textarea id="description"
+                              name="description"
+                              rows="4"
+                              placeholder="Enter event description"
+                              required></textarea>
+
+
+                    <!-- EVENT DATE AND TIME -->
+                    <label for="eventDate">
+                        Event Date & Time:
+                    </label>
+
+                    <input type="datetime-local"
+                           id="eventDate"
+                           name="eventDate"
+                           required>
+
+
+                    <!-- VENUE -->
+                    <label for="venue">
+                        Venue:
+                    </label>
+
+                    <input type="text"
+                           id="venue"
+                           name="venue"
+                           placeholder="Enter event venue"
+                           maxlength="150"
+                           required>
+
+
+                    <!-- CAPACITY -->
+                    <label for="capacity">
+                        Capacity (Students):
+                    </label>
+
+                    <input type="number"
+                           id="capacity"
+                           name="capacity"
+                           min="1"
+                           step="1"
+                           placeholder="e.g. 40"
+                           required>
+
+
+                    <!-- SUBMIT BUTTON -->
+                    <button type="submit">
+                        Create Event
+                    </button>
+
+                </form>
+
+
+                <!-- RESULT MESSAGE -->
+                <p id="createMessage"
+                   class="create-message"
+                   role="status"
+                   aria-live="polite"></p>
+
+                <div id="eventPreview"
+                     class="event-preview"
+                     hidden>
+
+                    <h3>Event Preview (Demo)</h3>
+
+                    <p id="previewName"></p>
+
+                    <p id="previewCategory"></p>
+
+                    <p id="previewDate"></p>
+
+                    <p id="previewVenue"></p>
+
+                    <p id="previewCapacity"></p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+   
+<script>
+
+function createEvent(event) {
+
+    // Prevent normal form submission
+    event.preventDefault();
+
+    // Get input values
+    const eventName =
+        document.getElementById("eventName").value.trim();
+
+    const category =
+        document.getElementById("category").value;
+
+    const eventDate =
+        document.getElementById("eventDate").value;
+
+    const venue =
+        document.getElementById("venue").value.trim();
+
+    const capacity =
+        Number(document.getElementById("capacity").value);
+
+    const message =
+        document.getElementById("createMessage");
+
+
+    // Check event name
+    if (eventName === "") {
+        message.textContent =
+            "Please enter the event name.";
+        message.style.color = "red";
+        return;
+    }
+
+    // Check event date
+    if (new Date(eventDate).getTime() <= Date.now()) {
+        message.textContent =
+            "Event date must be in the future.";
+        message.style.color = "red";
+        return;
+    }
+
+    // Check venue
+    if (venue === "") {
+        message.textContent =
+            "Please enter the event venue.";
+        message.style.color = "red";
+        return;
+    }
+
+    // Check capacity
+    if (!Number.isInteger(capacity) || capacity < 1) {
+        message.textContent =
+            "Capacity must be a positive whole number.";
+        message.style.color = "red";
+        return;
+    }
+
+
+    // Display demo message
+    message.textContent =
+        "Demo event preview generated. " +
+        "No data has been saved to Apache Derby.";
+
+    message.style.color = "green";
+
+
+    // Display event preview
+    document.getElementById("previewName").textContent =
+        "Event Name: " + eventName;
+
+    document.getElementById("previewCategory").textContent =
+        "Category: " + category;
+
+    document.getElementById("previewDate").textContent =
+        "Event Date: " + eventDate;
+
+    document.getElementById("previewVenue").textContent =
+        "Venue: " + venue;
+
+    document.getElementById("previewCapacity").textContent =
+        "Capacity: " + capacity + " Students";
+
+    document.getElementById("eventPreview").hidden = false;
+
+}
+
+</script>
+
+
+</body>
+</html>

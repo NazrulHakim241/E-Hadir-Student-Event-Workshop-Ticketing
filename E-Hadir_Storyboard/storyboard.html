@@ -1,0 +1,673 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>E-Hadir UiTM - System Storyboard</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .storyboard-page {
+            background: #f3f5f9;
+            min-height: 100vh;
+        }
+
+        .storyboard-container {
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        .storyboard-card {
+            background: white;
+            padding: 24px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .storyboard-card h2 {
+            color: #101b30;
+            margin-bottom: 15px;
+        }
+
+        .storyboard-card a {
+            display: block;
+            padding: 12px;
+            margin: 8px 0;
+            background: #f7f0e3;
+            color: #101b30;
+            border-radius: 6px;
+            text-decoration: none;
+        }
+
+        .storyboard-card a:hover {
+            background: #c99337;
+            color: white;
+        }
+        
+        
+/* FIX STORYBOARD PAGE LAYOUT */
+
+body.storyboard-page {
+    display: block;
+    width: 100%;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-color: #f3f5f9;
+}
+
+/* Make header full width */
+.storyboard-page .dashboard-header {
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+/* Center storyboard content */
+.storyboard-page .storyboard-container {
+    width: calc(100% - 40px);
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Full-width storyboard cards */
+.storyboard-page .storyboard-card {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+
+/* STORYBOARD DIAGRAM IMAGE */
+
+.storyboard-diagram {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    margin: 20px auto;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+    background-color: white;
+}
+
+/* Documentation headings */
+.storyboard-card h3 {
+    color: #101b30;
+    margin-top: 25px;
+    margin-bottom: 12px;
+}
+
+
+/* =============================== */
+/* STORYBOARD SCREENSHOT GALLERY   */
+/* =============================== */
+
+/* Responsive screenshot grid */
+.storyboard-gallery {
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(240px, 1fr)
+    );
+    gap: 20px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+/* Screenshot card */
+.storyboard-preview-card {
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    border-radius: 10px;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+/* Screenshot image */
+.storyboard-preview-card img {
+    display: block;
+    width: 100%;
+    height: 190px;
+    object-fit: contain;
+    background-color: #f3f5f9;
+    border-radius: 6px;
+    border: 1px solid #eeeeee;
+    box-sizing: border-box;
+}
+
+/* Screenshot title */
+.storyboard-preview-card h4 {
+    color: #101b30;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+/* Screenshot description */
+.storyboard-preview-card p {
+    color: #666666;
+    font-size: 13px;
+    line-height: 1.5;
+    text-align: left;
+    min-height: 40px;
+}
+
+/* Open HTML Page link */
+.storyboard-card .storyboard-preview-card a {
+    display: block;
+    background-color: #c99337;
+    color: #ffffff;
+    padding: 10px;
+    border-radius: 6px;
+    text-decoration: none;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+/* Hover effect */
+.storyboard-card .storyboard-preview-card a:hover {
+    background-color: #ad7823;
+    color: white;
+}
+
+
+
+    </style>
+
+</head>
+
+<body class="storyboard-page">
+
+    <header class="dashboard-header">
+        <h1>E-HADIR UiTM</h1>
+        <p>CSC584 - System Storyboard</p>
+    </header>
+
+    <main class="storyboard-container">
+
+        <h1>Storyboard Overview</h1>
+
+        <p>
+            Student Event & Workshop Ticketing System
+        </p>
+
+        <!-- COMMON PAGES -->
+        <section class="storyboard-card">
+
+            <h2>1. Common Pages</h2>
+
+            <a href="index.html">Login Page</a>
+
+            <a href="register.html">
+                Student Registration
+            </a>
+
+        </section>
+
+        <!-- STUDENT PAGES -->
+        <section class="storyboard-card">
+
+            <h2>2. Student Module</h2>
+
+            <a href="student-dashboard.html">
+                Student Dashboard
+            </a>
+
+            <a href="events.html">
+                Browse Events
+            </a>
+
+            <a href="event-details.html">
+                Event Details
+            </a>
+
+            <a href="event-registration.html">
+                Event Registration
+            </a>
+
+            <a href="digital-ticket.html">
+                Digital Ticket
+            </a>
+
+        </section>
+
+        <!-- COMMITTEE PAGES -->
+        <section class="storyboard-card">
+
+            <h2>3. Committee Module</h2>
+
+            <a href="committee-dashboard.html">
+                Committee Dashboard
+            </a>
+
+            <a href="manage-events.html">
+                Manage Events
+            </a>
+
+            <a href="create-event.html">
+                Create Event
+            </a>
+
+            <a href="edit-event.html">
+                Edit Event
+            </a>
+
+            <a href="attendance.html">
+                Attendance Management
+            </a>
+
+        </section>
+
+        <!-- ADMIN PAGES -->
+        <section class="storyboard-card">
+
+            <h2>4. Administrator Module</h2>
+
+            <a href="admin-dashboard.html">
+                Admin Dashboard
+            </a>
+
+        </section>
+
+        
+                        <!-- SYSTEM DOCUMENTATION -->
+
+                        <section class="storyboard-card">
+
+                            <h2>5. System Documentation</h2>
+
+                            <h3>5.1 System Navigation Flowchart</h3>
+
+                            <p>
+                                This flowchart illustrates the navigation
+                                of the E-Hadir UiTM system for three
+                                user roles: Student, Committee and Admin.
+                            </p>
+
+                            <img
+                                src="documentation/system-navigation-flowchart.png"
+                                alt="E-Hadir UiTM Full System Navigation Flowchart"
+                                class="storyboard-diagram">
+
+                            <a href="documentation/system-navigation-flowchart.png"
+                               target="_blank"
+                               rel="noopener">
+                                View Full System Navigation Flowchart
+                            </a>
+
+                           
+                                            <!-- 5.2 ENTITY RELATIONSHIP DIAGRAM -->
+
+                                            <h3>5.2 Entity Relationship Diagram (ERD)</h3>
+
+                                            <p>
+                                                The E-Hadir UiTM database consists of
+                                                five entities: USERS, CATEGORIES,
+                                                EVENTS, REGISTRATIONS and ATTENDANCE.
+                                            </p>
+
+                                            <p>
+                                                The ERD illustrates the relationships
+                                                between entities using Primary Keys (PK),
+                                                Foreign Keys (FK) and cardinalities.
+                                            </p>
+
+                                            <!-- DISPLAY FINAL ERD -->
+
+                                            <img
+                                                src="documentation/ehadir-final-erd.png"
+                                                alt="E-Hadir UiTM Entity Relationship Diagram"
+                                                class="storyboard-diagram">
+
+                                            <!-- VIEW FULL ERD -->
+
+                                            <a href="documentation/ehadir-final-erd.png"
+                                               target="_blank"
+                                               rel="noopener">
+                                                View Full Database ERD
+                                            </a>
+
+
+                        </section>
+
+
+        <p>
+            Storyboard Demonstration Only.
+            Database operations are not active.
+        </p>
+
+        
+<!-- ================================= -->
+<!-- 6. HTML SCREENSHOT PREVIEW        -->
+<!-- ================================= -->
+
+<section class="storyboard-card">
+
+    <h2>6. HTML Page Screenshot Preview</h2>
+
+    <p>
+        This section presents screenshots of the
+        E-Hadir UiTM storyboard interface.
+        Click Open HTML Page to view and
+        interact with each prototype.
+    </p>
+
+
+    <!-- COMMON MODULE -->
+    <h3>6.1 Common Pages</h3>
+
+    <div class="storyboard-gallery">
+
+        <!-- PAGE 1: LOGIN -->
+        <article class="storyboard-preview-card">
+
+            <img src="screenshots/01-login.png"
+                 alt="Login Page Screenshot"
+                 loading="lazy">
+
+            <h4>1. Login Page</h4>
+
+            <p>
+                User login interface with
+                storyboard role navigation.
+            </p>
+
+            <a href="index.html">
+                Open HTML Page
+            </a>
+
+        </article>
+
+
+        <!-- PAGE 2: REGISTRATION -->
+        <article class="storyboard-preview-card">
+
+            <img src="screenshots/02-register.png"
+                 alt="Registration Page Screenshot"
+                 loading="lazy">
+
+            <h4>2. Student Registration</h4>
+
+            <p>
+                Student account registration
+                form with input validation.
+            </p>
+
+            <a href="register.html">
+                Open HTML Page
+            </a>
+
+        </article>
+
+    </div>
+
+
+    <!-- STUDENT MODULE -->
+    <h3>6.2 Student Module</h3>
+
+    <div class="storyboard-gallery">
+
+        <!-- PAGE 3 -->
+        <article class="storyboard-preview-card">
+
+            <img src="screenshots/03-student-dashboard.png"
+                 alt="Student Dashboard Screenshot"
+                 loading="lazy">
+
+            <h4>3. Student Dashboard</h4>
+
+            <p>
+                Student event overview and
+                navigation to available events.
+            </p>
+
+            <a href="student-dashboard.html">
+                Open HTML Page
+            </a>
+
+        </article>
+
+
+        <!-- PAGE 4 -->
+        <article class="storyboard-preview-card">
+
+            <img src="screenshots/04-events.png"
+                 alt="Browse Events Screenshot"
+                 loading="lazy">
+
+            <h4>4. Browse Events</h4>
+
+            <p>
+                Displays available university
+                seminars and workshops.
+            </p>
+
+            <a href="events.html">
+                Open HTML Page
+            </a>
+
+        </article>
+
+
+        <!-- PAGE 5 -->
+        <article class="storyboard-preview-card">
+
+            <img src="screenshots/05-event-details.png"
+                 alt="Event Details Screenshot"
+                 loading="lazy">
+
+            <h4>5. Event Details</h4>
+
+            <p>
+                Displays event information,
+                date, venue and status.
+            </p>
+
+            <a href="event-details.html">
+                Open HTML Page
+            </a>
+
+        </article>
+
+
+        <!-- PAGE 6 -->
+        <article class="storyboard-preview-card">
+
+            <img src="screenshots/06-event-registration.png"
+                 alt="Event Registration Screenshot"
+                 loading="lazy">
+
+            <h4>6. Event Registration</h4>
+
+            <p>
+                Allows students to confirm
+                their event registration.
+            </p>
+
+            <a href="event-registration.html">
+                Open HTML Page
+            </a>
+
+        </article>
+
+
+        <!-- PAGE 7 -->
+        <article class="storyboard-preview-card">
+
+            <img src="screenshots/07-digital-ticket.png"
+                 alt="Digital Ticket Screenshot"
+                 loading="lazy">
+
+            <h4>7. Digital Ticket</h4>
+
+            <p>
+                Displays the student's
+                demonstration event ticket.
+            </p>
+
+            <a href="digital-ticket.html">
+                Open HTML Page
+            </a>
+
+        </article>
+
+    </div>
+
+
+    <!-- COMMITTEE MODULE -->
+    <h3>6.3 Committee Module</h3>
+
+    <div class="storyboard-gallery">
+
+        <!-- PAGE 8 -->
+        <article class="storyboard-preview-card">
+
+            <img src="screenshots/08-committee-dashboard.png"
+                 alt="Committee Dashboard Screenshot"
+                 loading="lazy">
+
+            <h4>8. Committee Dashboard</h4>
+
+            <p>
+                Committee dashboard with event
+                statistics and navigation.
+            </p>
+
+            <a href="committee-dashboard.html">
+                Open HTML Page
+            </a>
+
+        </article>
+
+
+        <!-- PAGE 9 -->
+        <article class="storyboard-preview-card">
+
+            <img src="screenshots/09-manage-events.png"
+                 alt="Manage Events Screenshot"
+                 loading="lazy">
+
+            <h4>9. Manage Events</h4>
+
+            <p>
+                Displays events and provides
+                View, Create and Edit actions.
+            </p>
+
+            <a href="manage-events.html">
+                Open HTML Page
+            </a>
+
+        </article>
+
+
+        <!-- PAGE 10 -->
+        <article class="storyboard-preview-card">
+
+            <img src="screenshots/10-create-event.png"
+                 alt="Create Event Screenshot"
+                 loading="lazy">
+
+            <h4>10. Create Event</h4>
+
+            <p>
+                Committee event creation form
+                with input validation and preview.
+            </p>
+
+            <a href="create-event.html">
+                Open HTML Page
+            </a>
+
+        </article>
+
+
+        <!-- PAGE 11 -->
+        <article class="storyboard-preview-card">
+
+            <img src="screenshots/11-edit-event.png"
+                 alt="Edit Event Screenshot"
+                 loading="lazy">
+
+            <h4>11. Edit Event</h4>
+
+            <p>
+                Allows committee members to
+                update existing event information.
+            </p>
+
+            <a href="edit-event.html">
+                Open HTML Page
+            </a>
+
+        </article>
+
+
+        <!-- PAGE 12 -->
+        <article class="storyboard-preview-card">
+
+            <img src="screenshots/12-attendance.png"
+                 alt="Attendance Management Screenshot"
+                 loading="lazy">
+
+            <h4>12. Attendance Management</h4>
+
+            <p>
+                Records demonstration attendance
+                status and displays the summary.
+            </p>
+
+            <a href="attendance.html">
+                Open HTML Page
+            </a>
+
+        </article>
+
+    </div>
+
+
+    <!-- ADMIN MODULE -->
+    <h3>6.4 Administrator Module</h3>
+
+    <div class="storyboard-gallery">
+
+        <!-- PAGE 13 -->
+        <article class="storyboard-preview-card">
+
+            <img src="screenshots/13-admin-dashboard.png"
+                 alt="Admin Dashboard Screenshot"
+                 loading="lazy">
+
+            <h4>13. Admin Dashboard</h4>
+
+            <p>
+                Displays cancelled events and
+                demonstrates confirmed deletion.
+            </p>
+
+            <a href="admin-dashboard.html">
+                Open HTML Page
+            </a>
+
+        </article>
+
+    </div>
+
+</section>
+
+        
+        
+        
+    </main>
+
+</body>
+</html>
